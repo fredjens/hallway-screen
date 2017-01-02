@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import dateFns from 'date-fns';
 import shortid from 'shortid';
 import autoBind from 'auto-bind';
-import RuterApi from './RuterApi';
+import RuterApi from '../utils/RuterApi';
 
 export default class Bus extends React.Component {
   constructor(props) {
