@@ -3,7 +3,6 @@ var app = express();
 var port = process.env.PORT || 4000;
 
 var yrno = require('yr.no-forecast');
-var weather = { test : { test: 1}};
 
 // Add headers
 app.use(function (req, res, next) {
