@@ -40,11 +40,11 @@ class App extends Component {
   render() {
     const { weather, loading } = this.state;
     const day = weather[0];
-    const rain = loading ? 0 : parseFloat(day.rain);
-    const isItRaining = rain > 0 ? true : false;
+    // const rain = loading ? 0 : parseFloat(day.rain);
+    // const isItRaining = rain > 0 ? true : false;
 
     const temperature = loading ? 0 : parseFloat(day.temperature);
-    const isItIcy = temperature < 0 ? true : false;
+    // const isItIcy = temperature < 0 ? true : false;
 
     return(
       !loading ?
