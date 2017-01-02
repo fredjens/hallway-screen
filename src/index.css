@@ -1,0 +1,136 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@keyframes background {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: black;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+  font-weight: 100;
+  font-size: 1rem;
+  color: #fff;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: .9rem;
+  padding-top: 4rem;
+  background-image: linear-gradient(90deg, #382e34 0%, #231d3e 30%, #193c1b 67%, #550f20 100%);
+  background-size: 2000% 100%;
+  background-repeat: no-repeat;
+  background-repeat: none;
+  animation: background 100s linear alternate infinite;
+}
+
+h1, h2, h3 {
+  font-weight: 100;
+  color: white;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  color: white;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+h3 {
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+p {
+  margin-top: 0;
+  font-weight: 100;
+}
+
+.circle {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.skycon {
+  max-width: 300px;
+  display: inline-block;
+}
+
+.webcam {
+  visibility: hidden;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.flex-full {
+  display: flex;
+  height: calc(100vh - 4rem);
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  display: flex;
+  margin: 3rem 0 1rem;
+  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+
+}
+
+.flex-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1rem;
+  width: 300px;
+  align-self: center;
+}
+
+.right {
+  float: right;
+  position: absolute;
+  right: 0;
+  margin: 2rem;
+  width: 8rem;
+  text-align: right;
+  align-self: flex-end;
+}
+
+.center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.padding {
+  padding: 8rem;
+}
