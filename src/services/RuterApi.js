@@ -9,7 +9,7 @@ function RuterApi(id) {
       if (err) reject(err);
       resolve(data.slice(0, 13));
     }
-    jsonp(url,'JSON_CALLBACK', getData);
+    jsonp(url, 'JSON_CALLBACK', getData);
   });
 
 }

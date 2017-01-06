@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import autoBind from 'auto-bind';
 import dateFns from 'date-fns';
+
 import Skycons from 'react-skycons';
 import GetWeatherIcon from '../utils/GetWeatherIcon';
 
@@ -26,7 +27,6 @@ class App extends Component {
   }
 
   loadWeatherData() {
-    console.log('load weather');
     fetch('http://localhost:4000')
       .then((res) => res.text())
       .then(data => {

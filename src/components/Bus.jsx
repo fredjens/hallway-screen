@@ -1,32 +1,18 @@
 import React, {PropTypes} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { selectPublicTransport } from '../actions';
+
 import dateFns from 'date-fns';
 import shortid from 'shortid';
-import autoBind from 'auto-bind';
-import RuterApi from '../utils/RuterApi';
+import RuterApi from '../services/RuterApi';
 
-export default class Bus extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { bus: [] }
-    autoBind(this);
-  }
-
+class Bus extends React.Component {
   componentWillMount() {
-    this.getBusData();
+    this.props.selectPublicTransport(this.props.id);
     setInterval(() => {
-      console.log('poll');
-      this.getBusData();
+      // this.props.requestPublicTransport(this.props.id);
     }, 10000);
-  }
-
-  getBusData() {
-    RuterApi(this.props.id).then(
-      data => {
-        this.setState({
-          bus: data,
-        })
-      }
-    )
   }
 
   componentWillUnmount(){
@@ -34,8 +20,7 @@ export default class Bus extends React.Component {
   };
 
   render() {
-    const { bus } = this.state;
-    const { icon, name } = this.props;
+    const { bus, icon, name } = this.props;
 
     const getEmoji = data => data === '1' ? '👉' : '👈';
 
@@ -70,5 +55,15 @@ export default class Bus extends React.Component {
   }
 }
 
-Bus.propTypes = {
-};
+const mapStateToProps = state => ({
+  bus: state.publicTransport.publicTransportData.data,
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  selectPublicTransport,
+}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Bus);

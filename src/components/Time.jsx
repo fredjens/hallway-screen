@@ -1,28 +1,28 @@
-
 import React, {PropTypes} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getTime } from '../actions';
+
 import autoBind from 'auto-bind';
 import dateFns from 'date-fns';
 
-export default class Time extends React.Component {
-  constructor() {
-    super();
-    autoBind(this);
-    this.state = {time: (new Date())};
-  }
 
+class Time extends React.Component {
   componentWillMount() {
-    setInterval(() => {
-      this.getTime();
-    }, 5000);
-  }
+    this.props.getTime();
 
-  getTime() {
-      console.log('seconds');
-      this.setState({time: (new Date())});
-  }
+    // Get new time every minute
+    setInterval(() => {
+      this.props.getTime();
+    }, 60000);
+  };
+
+  componentWillUnmount(){
+    clearInterval();
+  };
 
   render() {
-    const { time } = this.state;
+    const { time } = this.props;
 
     return (
       <div className="flex-item right">
@@ -32,5 +32,15 @@ export default class Time extends React.Component {
   }
 }
 
-Time.propTypes = {
-};
+const mapStateToProps = state => ({
+  time: state.time,
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getTime,
+}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Time);
