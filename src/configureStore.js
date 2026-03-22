@@ -6,12 +6,14 @@ import createSagaMiddleware from 'redux-saga';
 
 export default function configureStore() {
   const sagaMiddleware = createSagaMiddleware();
+  
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  
   return {
     ...createStore(
       rootReducer,
-      compose(
-        applyMiddleware(sagaMiddleware),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+      composeEnhancers(
+        applyMiddleware(sagaMiddleware)
       )
     ),
     runSaga: sagaMiddleware.run,

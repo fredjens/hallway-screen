@@ -1,14 +1,15 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectPublicTransport } from '../actions';
 
-import dateFns from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import shortid from 'shortid';
 import RuterApi from '../services/RuterApi';
 
 class Bus extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.selectPublicTransport(this.props.id);
     setInterval(() => {
       // this.props.requestPublicTransport(this.props.id);
@@ -44,7 +45,7 @@ class Bus extends React.Component {
 
           return (
             <div key={shortid.generate()}>
-              <h3>{dateFns.distanceInWordsToNow(timeOnStop)} </h3>
+              <h3>{formatDistanceToNow(new Date(timeOnStop))} </h3>
               <p>{routeNmbr} {routeName}</p>
             </div>
           )

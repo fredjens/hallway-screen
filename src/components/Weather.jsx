@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import autoBind from 'auto-bind';
-import dateFns from 'date-fns';
 
 import Skycons from 'react-skycons';
 import GetWeatherIcon from '../utils/GetWeatherIcon';
@@ -15,7 +14,7 @@ class App extends Component {
     autoBind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const pollWeather = () => {
       setTimeout(() => {
         this.loadWeatherData();
