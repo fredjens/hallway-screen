@@ -1,14 +1,15 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getTime } from '../actions';
 
 import autoBind from 'auto-bind';
-import dateFns from 'date-fns';
+import { format } from 'date-fns';
 
 
 class Time extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.getTime();
 
     // Get new time every minute
@@ -26,7 +27,7 @@ class Time extends React.Component {
 
     return (
       <div className="flex-item right">
-        <h1>{dateFns.format(time, 'HH:mm')}</h1>
+        <h1>{time ? format(new Date(time), 'HH:mm') : format(new Date(), 'HH:mm')}</h1>
       </div>
     );
   }
